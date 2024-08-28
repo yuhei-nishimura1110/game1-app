@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/css/home.css}" rel="stylesheet">
+		<title>ゲーム：月</title>
+	</head>
+	<body><div class=k>
+		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
+			<a href="/home" class=border>ホームに戻る</a>
+						<a href="/home/battle/menu" class=border>一覧に戻る</a><div class=center>
+			<p>☆注意文☆<br>マドリードの8・9階層に出てくるドラゴンが3体にドラゴンより強い魔王がいます。<br>十分注意してお進みください。<br>なお、月に行くために相当なお金がかかります。</p>
+		<a th:href="@{/home/battle/100}" class=border>月へ行く</a>
+	</div></div>
+	</body>
+</html>

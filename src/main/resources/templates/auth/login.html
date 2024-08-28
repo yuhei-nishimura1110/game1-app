@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/home.css}" rel="stylesheet">
+<title>ゲーム：ログイン</title>
+</head>
+
+<body>
+<div class=k>
+	<div class=center>
+	<main class=divcenter>
+		<h２>ログイン</h２>
+		                             
+		             <form th:action="@{/login}" method="POST">
+		                                 <div>
+		                                     <input type="text" name="username" placeholder="1234567890" autofocus>
+		                                 </div>
+		                                 <div>
+		                                     <input type="password" name="password" placeholder="パスワード">
+		                                 </div>
+		                                 
+		                                 <div>
+		                                     <button type="submit" >ログイン</button>
+		                                 </div>
+		                             </form>
+	</main>
+</div></div>
+</body>
+</html>

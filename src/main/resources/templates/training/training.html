@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link th:href="@{/css/home.css}" rel="stylesheet">
+<title>ゲーム：成長転職</title>
+</head>
+<body>
+	<div class=k>
+		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
+		<div th:if="${successMessage}"  class=center>
+			<span th:text="${successMessage}"></span>
+		</div> <a href="/home"class=border>ホームに戻る</a> 
+		<a href="/home/organization/1"class=border>編成へ行く</a> <div class=divcenter>
+		<table class =center>
+			<thead>
+				<th>名前</th>
+				<th>職業</th>
+				<th>経験</th>
+				<th>筋力</th>
+				<th>俊敏</th>
+				<th>技術</th>
+				<th>魔術</th>
+				<th>精神</th>
+				<th>学力</th>
+				<th>体力</th>
+				<th>食力</th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr th:each="player : ${playerPage}">
+					<td th:text="${player.getName()}"></td>
+					<td th:text="${transformation.Job(player.getJob())}"></td>
+					<td th:text="${transformation.jobskil(player,player.getJob())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getMuscle())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getQuick())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getTechnique())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getMagic())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getSpirit())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getKnowledge())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getStamina())}"></td>
+					<td th:text="${transformation.Fluctuation_Status(player.getEating())}"></td>
+					<td><a th:href="@{/home/training/__${player.getId()}__}">>詳細</a></td>
+					<td><a th:href="@{/home/training/__${player.getId()}__/delete}">削除</a></td>
+				</tr>
+			</tbody>
+		</table></div>
+		<!-- ページネーション -->
+		<div th:if="${playerPage.getTotalPages() > 1}"><div class=divcenter>
+				<div class = pagenationa><div class=flex>
+					<div  class=borders>
+						<span th:if="${playerPage.isFirst()}">前</span>
+						<a th:unless="${playerPage.isFirst()}" th:href="@{/home/training(page = ${playerPage.getNumber() - 1})}">前</a>
+					</div>
+					<div  class=borders th:each="i : ${#numbers.sequence(0, playerPage.getTotalPages() - 1)}">
+						<span th:if="${i == playerPage.getNumber()}" th:text="${i + 1}"></span>
+						<a th:unless="${i == playerPage.getNumber()}" th:href="@{/home/training(page = ${i})}" th:text="${i + 1}"></a>
+					</div>
+					<div  class=borders>
+						<span th:if="${playerPage.isLast()}">次</span>
+						<a th:unless="${playerPage.isLast()}" th:href="@{/home/training(page = ${playerPage.getNumber() + 1})}">次</a>
+					</div>
+				</div>
+		</div></div>
+		</div>
+	</div>
+</body>
+</html>

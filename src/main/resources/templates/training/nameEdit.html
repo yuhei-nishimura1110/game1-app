@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/css/home.css}" rel="stylesheet">
+		<title>ゲーム：名前の変更</title>
+	</head>
+	<body>
+		<div class=k>
+			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
+			<div th:if="${successMessage}"  class=center>
+				<span th:text="${successMessage}"></span>
+			</div>
+			<a th:href="@{/home/training/__${player.getId()}__}" class=border>戦闘員詳細に戻る</a>
+			<div class=center>
+			<form method="post" th:action="@{/home/training/__${player.getId()}__/nameEdited}" th:object="${playerNameEditForm}">
+				<lavel>名前</lavel>
+				<input type="text" th:field="*{name}">
+				<button type="submit">変更</button>
+			</form></div>
+		</div>
+	</body>
+</html>
