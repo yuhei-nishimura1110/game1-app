@@ -10,29 +10,21 @@ import com.example.game.Repository.UserRepository;
 import com.example.game.entity.User;
 
 @Service
-public class UserService implements UserDetailsService{
-	
+public class UserService implements UserDetailsService {
+
 	@Autowired
 	private UserRepository userRepository;
-	
 
-
-	
-	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO 自動生成されたメソッド・スタブ
-		User user =userRepository.findByUsername(username);
-		
-		if(user==null) {
+		User user = userRepository.findByUsername(username);
+
+		if (user == null) {
 			throw new UsernameNotFoundException("User not found");
 		}
-		
+
 		return new UserPrincipal(user);
 	}
-	
-	
-
-    
 
 }
